@@ -1,24 +1,35 @@
-import logo from './logo.svg';
 import './App.css';
+import ToDoList from './ToDoList';
+// import { TasksContext } from './Contexts/TasksContext';
+// import { v4 as uuidv4 } from 'uuid';
+// import { useState } from 'react';
+import { createTheme,ThemeProvider } from '@mui/material/styles';
+import { SnackBarBrovider } from './Contexts/SnackBarContext';
+import TaskProvider from './Contexts/TasksContext';
 
+const theme = createTheme({
+  palette: {
+    primary: {
+        main: "#00796b",
+      },
+    },
+});
+
+// const list=[{id:uuidv4(),title:'alaa',details:'',iscompleted:false}];
 function App() {
+  // const [tasks,SetTasks]=useState(list);
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <TaskProvider>
+      <SnackBarBrovider>
+        <div className="App">
+                  <ToDoList />
+        </div>
+      </SnackBarBrovider>
+      </TaskProvider>
+    </ThemeProvider>
   );
 }
 
